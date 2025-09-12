@@ -6,7 +6,25 @@
 
 #include "linearize.hpp"
 
-void linearize(std::vector<double>& x_points, std::vector<double>& y_points, std::function<double(double)> get_new_y, const double absolute_tolerance, const double relative_tolerance){
+bool check_condition(ToleranceCondition cond,
+                     double abs_diff, double abs_tol,
+                     double rel_diff, double rel_tol)
+{
+    switch (cond) {
+        case ToleranceCondition::Or:
+            return abs_diff > abs_tol || rel_diff > rel_tol;
+        case ToleranceCondition::And:
+            return abs_diff > abs_tol && rel_diff > rel_tol;
+        case ToleranceCondition::AbsOnly:
+            return abs_diff > abs_tol;
+        case ToleranceCondition::RelOnly:
+            return rel_diff > rel_tol;
+        default:
+            return false; // fallback (shouldn't happen)
+    }
+}
+
+void linearize(std::vector<double>& x_points, std::vector<double>& y_points, std::function<double(double)> get_new_y, const double absolute_tolerance, const double relative_tolerance, const ToleranceCondition condition){
     std::vector<std::pair<int, int>> stack;
     stack.reserve(x_points.size());
     for(int i=0; i<x_points.size()-1; i++){
@@ -35,7 +53,8 @@ void linearize(std::vector<double>& x_points, std::vector<double>& y_points, std
         double rel_diff = (y_point != 0) ? abs(abs_diff/y_point) : 0;
 
 
-        if (abs_diff>absolute_tolerance || rel_diff>relative_tolerance){
+        // if (abs_diff>absolute_tolerance && rel_diff>relative_tolerance){
+        if (check_condition(condition, abs_diff, absolute_tolerance, rel_diff, relative_tolerance)){
             x_points.push_back(x_point);
             y_points.push_back(y_point);
             stack.push_back(std::make_pair(left, x_points.size()-1));
