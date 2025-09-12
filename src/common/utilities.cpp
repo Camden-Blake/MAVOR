@@ -56,11 +56,12 @@ std::vector<double> pdf_to_cdf(std::vector<double> const & x, std::vector<double
     for (int i=1; i<x.size(); i++){
         cdf[i] = cdf[i-1] + ENDF_integrate(x[i-1], x[i], y[i-1], y[i], integration_scheme);
     }
-    if (!std::isfinite(cdf.back()) || cdf.back() <= 0.0){
-        throw std::runtime_error("PDF was all zeros.");
+    if (!std::isfinite(cdf.back())){
+        throw std::runtime_error("Non-finite number found when converting PDF to CDF.");
     }
     if (cdf.back() < std::numeric_limits<double>::min()) {
-        std::cerr << "WARNING: CDF is below numeric_limits<double>::min(). May suffer from precision loss in CDF normalization.\n";
+        std::cerr << "WARNING: CDF is below numeric_limits<double>::min(). Altering PDF to be a constant value.\n";
+        cdf = linspace(0, 1, x.size());
     }
     else{ 
         double factor = 1/cdf.back();
