@@ -54,12 +54,12 @@ FetchContent_Declare(
     )
 FetchContent_MakeAvailable(CLI11)
 
-message(STATUS "Retrieving Eigen")
+message(STATUS "Retrieving Eigen version 3.4.1")
 FetchContent_Declare(
     EIGEN 
     QUIET
     GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
-    GIT_TAG master
+    GIT_TAG 3.4.1
     GIT_SHALLOW TRUE
     GIT_PROGRESS TRUE
     )

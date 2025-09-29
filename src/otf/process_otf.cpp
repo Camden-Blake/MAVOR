@@ -286,11 +286,11 @@ void OTFData::fill_A_matrices__(){
     }
     for (int i = 0; i<temps.size(); i++){
         Eigen::VectorXd evaled_xs_points = eval_fit_func__(xs_temps[i], class_xs_fit.second, std::get<3>(class_xs_fit.first.second).second);
-        xs_A(i, Eigen::placeholders::all) = evaled_xs_points;
+        xs_A(i, Eigen::all) = evaled_xs_points;
         Eigen::VectorXd evaled_beta_points = eval_fit_func__(beta_temps[i], class_beta_fit.second, std::get<3>(class_beta_fit.first.second).second);
-        beta_A(i, Eigen::placeholders::all) = evaled_beta_points;
+        beta_A(i, Eigen::all) = evaled_beta_points;
         Eigen::VectorXd evaled_alpha_points = eval_fit_func__(alpha_temps[i], class_alpha_fit.second, std::get<3>(class_alpha_fit.first.second).second);
-        alpha_A(i, Eigen::placeholders::all) = evaled_alpha_points;
+        alpha_A(i, Eigen::all) = evaled_alpha_points;
     }
 }
 
