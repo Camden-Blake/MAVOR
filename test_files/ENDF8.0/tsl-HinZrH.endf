@@ -1,0 +1,76 @@
+ $Rev:: 1449     $  $Date:: 2018-01-17#$                             0 0  0     
+ 1.070000+2 1.000000+0         -1          0          0          1   7 1451     
+ 0.000000+0 0.000000+0          0          0          0          6   7 1451     
+ 1.000000+0 5.000000+0          0          0         12          8   7 1451     
+ 0.000000+0 0.000000+0          0          0         57          2   7 1451     
+ H(ZrH)    LANL       EVAL-APR93 MacFarlane                          7 1451     
+ ref. 3 (1994)        DIST-FEB18                       20111222      7 1451     
+----ENDF/B-VIII.0     MATERIAL 7                                     7 1451     
+-----THERMAL NEUTRON SCATTERING DATA                                 7 1451     
+------ENDF-6                                                         7 1451     
+                                                                     7 1451     
+ Temperatures = 296 400 500 600 700 800 1000 1200 deg K.             7 1451     
+                                                                     7 1451     
+ History                                                             7 1451     
+ -------                                                             7 1451     
+ this evaluation was produced at los alamos in 1993 using            7 1451     
+ the same model as the ga evaluation of 1968 (ref 1).  the           7 1451     
+ leapr module of njoy was used for the calculation, and              7 1451     
+ the alpha and beta grids were extended slightly.  constants         7 1451     
+ that match the endf/b-vi values were used.                          7 1451     
+                                                                     7 1451     
+ Theory                                                              7 1451     
+ ------                                                              7 1451     
+ the lattice dynamics of zrh were computed from a central            7 1451     
+ force model.  the slightly tetragonal lattice of zrh_2 was          7 1451     
+ approximated by a face-centered-cubic lattice.  four force          7 1451     
+ constants (mu, gamma, nu, and delta) were introduced describing     7 1451     
+ respectively the interaction of a zirconium atoms with its          7 1451     
+ nearest neighbors ( 8 h atoms) and its next nearest neighbors       7 1451     
+ (12 zr atoms), and the interaction of a hydrogen atom with          7 1451     
+ its next nearest neighbors (6 h atoms) and its third nearest        7 1451     
+ atoms (12 h atoms).  eigenvalues and eigenvectos of the             7 1451     
+ dynamical matrix were calculated, and a phonon frequency            7 1451     
+ spectrum was obtained by means of a root sampling technique.        7 1451     
+ weighted frequency spectra for hydrogen in zrh were then            7 1451     
+ obtained by appropriate use of the dynamical matrix                 7 1451     
+ eigenvectors (ref. 2).                                              7 1451     
+                                                                     7 1451     
+ the final values of the four force constants were obtained          7 1451     
+ by fitting both specific heat and neutron data.  the                7 1451     
+ position of an optical peak observed by neutron scattering          7 1451     
+ techniques to be centered roughly around 0.14 ev determines         7 1451     
+ the constant mu, while the overall width and shape of this          7 1451     
+ peak determine nu and delta respectively.  existing neutron         7 1451     
+ data are not sufficiently precise to confirm the structure          7 1451     
+ predicted in the optical peak by the central force model.           7 1451     
+ specific heat data were used to determine the force                 7 1451     
+ constant gamma, which primarily determines the upper                7 1451     
+ limit on the phonon energies associated with acoustic modes.        7 1451     
+                                                                     7 1451     
+ References                                                          7 1451     
+ ----------                                                          7 1451     
+ 1. j.u.koppel and d.h.houston, reference manual for endf thermal    7 1451     
+    neutron scattering data, general atomic report ga-8774           7 1451     
+    revised and reissued as endf-269 by the national nuclear         7 1451     
+    data center, july 1978.                                          7 1451     
+ 2. e.l.slaggie, "central force lattice dynamical model for          7 1451     
+    zirconium hydride", ga-8132 (1967).                              7 1451     
+ 3. r.e.macfarlane, new thermal neutron scattering files for         7 1451     
+    endf/b-vi release 2, los alamos national laboratory report       7 1451     
+    LA-12639-MS (ENDF-356) March 1994.                               7 1451     
+                                                                     7 1451     
+                                1        451         63          0   7 1451     
+                                7          2          6          0   7 1451     
+                                                                     7 1  0     
+                                                                     7 0  0     
+ 1.070000+2 1.000000+0          2          0          0          0   7 7  2
+ 8.198006+1 0.000000+0          0          0          1          8   7 7  2
+          8          2                                               7 7  2
+ 2.960000+2 8.486993+0 4.000000+2 9.093191+0 5.000000+2 9.828159+0   7 7  2
+ 6.000000+2 1.068529+1 7.000000+2 1.163519+1 8.000000+2 1.265427+1   7 7  2
+ 1.000000+3 1.483548+1 1.200000+3 1.714050+1                         7 7  2
+ 0.000000+0 0.000000+0          0          0          0          0   7 7  0
+                                                                     7 0  0     
+                                                                     0 0  0     
+                                                                    -1 0  0     

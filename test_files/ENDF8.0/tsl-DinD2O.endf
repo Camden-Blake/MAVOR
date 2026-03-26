@@ -1,0 +1,76 @@
+ $Rev:: 1449     $  $Date:: 2018-01-17#$                             0 0  0     
+ 1.002000+3 1.996800+0         -1          0          0          0  11 1451     
+ 0.000000+0 0.000000+0          0          0          0          6  11 1451     
+ 1.000000+0 5.000000+0          0          0         12          8  11 1451     
+ 0.000000+0 0.000000+0          0          0         66          1  11 1451     
+ D(D2O)     ARCAB     EVAL-JUN17 Marquez Damian                     11 1451     
+ NDS 148, 1 (2018)    DIST-FEB18                                    11 1451     
+----ENDF/B-VIII.0     MATERIAL 11                                   11 1451     
+-----THERMAL NEUTRON SCATTERING DATA                                11 1451     
+------ENDF-6 FORMAT                                                 11 1451     
+                                                                    11 1451     
+******************************************************************  11 1451     
+*                                                                *  11 1451     
+* Temperatures = 283.6, 293.6, 300.0,                            *  11 1451     
+*         323.6, 350.0, 373.6, 400.0,                            *  11 1451     
+*         423.6, 450.0, 473.6, 500.0,                            *  11 1451     
+*         523.6, 550.0, 573.6, 600.0 K, 623.6 K                  *  11 1451     
+*                                                                *  11 1451     
+* Extrapolated temperature = 650.0 K                             *  11 1451     
+*                                                                *  11 1451     
+* This evaluation is based on the CAB Model for heavy water[1]   *  11 1451     
+* in a liquid state, T < T-crit(D2O) = 643.8 K. The file (MF7)   *  11 1451     
+* was generated using NJOY 99.396[1] with a patch (upcab). One   *  11 1451     
+* temperature point at 650 K was added for backward              *  11 1451     
+* compatibility with ENDF/B-VII.1 scripts.                       *  11 1451     
+*                                                                *  11 1451     
+* The CAB model is a further development of ENDF/B-VII (2006)    *  11 1451     
+* and IKE, Stuttgart (2005) models for heavy water (n + D2O);    *  11 1451     
+* vibrational spectrum decomposition is applied. The continuous  *  11 1451     
+* spectrum is based on MD GROMACS Calculations[2] and diffusion  *  11 1451     
+* coefficients measured by Yoshida[3] and Mills[4].              *  11 1451     
+*                                                                *  11 1451     
+* For n + H-2-in-D2O, Skold approximation was applied for        *  11 1451     
+* coherent inelastic correction with partial structure factors   *  11 1451     
+* validated against experimental data measured by Soper[5].      *  11 1451     
+* sig_coh(H-2)/sig_s(H-2) = 0.73194 .                            *  11 1451     
+*                                                                *  11 1451     
+* For oxygen in D2O, a new evaluation of the scattering kernel   *  11 1451     
+* was prepared (free gas model is not applied). The scattering   *  11 1451     
+* kernels for H-2-in-D2O and O-16-in-D2O were tested with        *  11 1451     
+* criticality calculations in collaboration with D. Roubtsov     *  11 1451     
+* from Canadian Nuclear Laboratories[6].                         *  11 1451     
+*                                                                *  11 1451     
+* The evaluation was prepared by:                                *  11 1451     
+*                                                                *  11 1451     
+* J.I. Marquez Damian, F. Cantargi, and J.R. Granada             *  11 1451     
+* Nuclear Data Group - Neutron Physics Department                *  11 1451     
+* Centro Atomico Bariloche - Argentina (CAB):                    *  11 1451     
+*                                                                *  11 1451     
+*  and                                                           *  11 1451     
+*                                                                *  11 1451     
+* D. Roubtsov                                                    *  11 1451     
+* Canadian Nuclear Laboratories (CNL)                            *  11 1451     
+* Chalk River, Canada                                            *  11 1451     
+*                                                                *  11 1451     
+* References:                                                    *  11 1451     
+*  [1] Ann. Nucl. Energy, 65, 280 (2014)                         *  11 1451     
+*      http://dx.doi.org/10.1016/j.anucene.2013.11.014           *  11 1451     
+*  [2] J. Chem. Phys. 139, 024504 (2013)                         *  11 1451     
+*      http://dx.doi.org/10.1063/1.4812828                       *  11 1451     
+*  [3] J. Chem. Phys. 123, 164506 (2005)                         *  11 1451     
+*      http://dx.doi.org/10.1063/1.2056542                       *  11 1451     
+*  [4] J. Phys. Chem. 77, 685 (1973)                             *  11 1451     
+*      http://dx.doi.org/10.1021/j100624a025                     *  11 1451     
+*  [5] Chem. Phys. 258, 121 (2000)                               *  11 1451     
+*      http://dx.doi.org/10.1016/S0301-0104(00)00179-8           *  11 1451     
+*  [6] Ann. Nucl. Energy, 71, 206 (2014)                         *  11 1451     
+*      http://dx.doi.org/10.1016/j.anucene.2014.03.024           *  11 1451     
+*                                                                *  11 1451     
+******************************************************************  11 1451     
+                                                                    11 1451     
+                                1        451         71          0  11 1451     
+                                                                    11 1  0     
+                                                                    11 0  0     
+                                                                     0 0  0     
+                                                                    -1 0  0     
