@@ -111,6 +111,21 @@ OTFData::OTFData(const std::string & directory){
     // Load in the fit settings
     load_material_fits__();
     override_fit_settings__();
+
+    // Set min/max scale to actual temperature bounds when scaling is disabled
+    // Dirty fix, setting the fitting functions needs to be refactored cause this is a mess
+    if (!std::get<0>(class_xs_fit.first.second)) {
+        std::get<1>(class_xs_fit.first.second) = temps.front();
+        std::get<2>(class_xs_fit.first.second) = temps.back();
+    }
+    if (!std::get<0>(class_beta_fit.first.second)) {
+        std::get<1>(class_beta_fit.first.second) = temps.front();
+        std::get<2>(class_beta_fit.first.second) = temps.back();
+    }
+    if (!std::get<0>(class_alpha_fit.first.second)) {
+        std::get<1>(class_alpha_fit.first.second) = temps.front();
+        std::get<2>(class_alpha_fit.first.second) = temps.back();
+    }
 }
 
 void OTFData::load_material_fits__(){
