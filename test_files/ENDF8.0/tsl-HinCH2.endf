@@ -1,0 +1,52 @@
+ $Rev:: 1449     $  $Date:: 2018-01-17#$                             0 0  0     
+ 1.370000+2 9.991673-1         -1          0          0          0  37 1451     
+ 0.000000+0 0.000000+0          0          0          0          6  37 1451     
+ 1.000000+0 5.000000+0          0          0         12          8  37 1451     
+ 0.000000+0 0.000000+0          0          0         32          2  37 1451     
+ H(CH2)    LEIP LAB   EVAL-SEP17 Y. Zhu, A.I. Hawari                37 1451     
+ NDS 148, 1 (2018)    DIST-FEB18                                    37 1451     
+----ENDF/B-VIII.0     MATERIAL   37                                 37 1451     
+-----THERMAL NEUTRON SCATTERING DATA                                37 1451     
+------ENDF-6 FORMAT                                                 37 1451     
+                                                                    37 1451     
+ Temperatures = 77 196 233 293.6 300 303 313 323 333 343 350 K      37 1451     
+                                                                    37 1451     
+ History                                                            37 1451     
+ ----------                                                         37 1451     
+ This library was produced by the Low Energy Interactions Physics   37 1451     
+ (LEIP) group at North Carolina State University.  Twelve           37 1451     
+ temperatures are available in this library.  The inelastic         37 1451     
+ scattering cross section libraries for H in CH2 (Polyethylene)     37 1451     
+ were developed using molecular dynamics methods [1,2]. This        37 1451     
+ material is a polymer.  The incoherent elastic cross section is    37 1451     
+ significant, so the MT = 2 section for elastic scattering is       37 1451     
+ present. The LEAPR module from NJOY2012 code system was used       37 1451     
+ to produce MT = 2 and MT = 4 data.  By convention, MAT=37 and      37 1451     
+ ZA=137 are used for H in Polyethylene.                             37 1451     
+                                                                    37 1451     
+ References                                                         37 1451     
+ ----------                                                         37 1451     
+                                                                    37 1451     
+ 1. A.I. Hawari, "Modern Techniques in Inelastic Thermal Neutron    37 1451     
+    Scattering Analysis," Nuclear Data Sheets 118 (2014) 172.       37 1451     
+ 2. A.I. Hawari, A. Petersen, Y. Zhu, et al., "Development of a     37 1451     
+    Thermal Neutron Scattering Law for Polyethylene Using           37 1451     
+    Molecular Dynamics Simulations." Transactions of the American   37 1451     
+    Nuclear Society, v. 115, Nov 6-10, (2016)                       37 1451     
+                                                                    37 1451     
+ -----------------------------------------------------------------  37 1451     
+                                1        451         38          0  37 1451     
+                                7          2          7          0  37 1451     
+                                                                    37 1  0     
+                                                                    37 0  0     
+ 1.370000+2 9.991673-1          2          0          0          0  37 7  2
+ 1.636270+2 0.000000+0          0          0          1         11  37 7  2
+         11          2                                              37 7  2
+ 7.700000+1 1.250360+1 1.960000+2 2.034278+1 2.330000+2 2.296672+1  37 7  2
+ 2.936000+2 2.734691+1 3.000000+2 2.781424+1 3.030000+2 2.803357+1  37 7  2
+ 3.130000+2 2.876588+1 3.230000+2 2.950000+1 3.330000+2 3.023584+1  37 7  2
+ 3.430000+2 3.097333+1 3.500000+2 3.149051+1                        37 7  2
+ 0.000000+0 0.000000+0          0          0          0          0  37 7  0
+                                                                    37 0  0     
+                                                                     0 0  0     
+                                                                    -1 0  0     

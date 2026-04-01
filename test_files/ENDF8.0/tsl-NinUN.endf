@@ -1,0 +1,55 @@
+ $Rev:: 1329     $  $Date:: 2017-09-20#$                             0 0  0     
+ 1.710000+2 1.388278+1         -1          0          0          0  71 1451     
+ 0.000000+0 0.000000+0          0          0          0          6  71 1451     
+ 1.000000+0 5.000000+0          0          0         12          8  71 1451     
+ 0.000000+0 0.000000+0          0          0         36          2  71 1451     
+ N(UN)    LEIP LAB    EVAL-SEP17 J.L. Wormald, A.I. Hawari          71 1451     
+ NDS 148, 1 (2018)    DIST-FEB18                                    71 1451     
+----ENDF/B-VIII.0     MATERIAL 71                                   71 1451     
+-----THERMAL NEUTRON SCATTERING DATA                                71 1451     
+------ENDF-6 FORMAT                                                 71 1451     
+ Temperatures = 296 400 500 600 700 800 1000 1200 K                 71 1451     
+                                                                    71 1451     
+ Background                                                         71 1451     
+ ----------                                                         71 1451     
+                                                                    71 1451     
+ This library was produced by the Low Energy Interaction Physics    71 1451     
+ (LEIP) group at NC State University. The inelastic scattering      71 1451     
+ thermal scattering law data for Uranium Mononitride (UN) were      71 1451     
+ developed using ab initio lattice dynamics methods [1]. The        71 1451     
+ LEAPR module from the NJOY code system was used to produce MF=7    71 1451     
+ MT=2 and 4 for U in UN. Modifications to the LEAPR module were     71 1451     
+ made to calculate the coherent elastic cross-section for UN [2].   71 1451     
+ N-14 has an incoherent nuclear cross section of 0.5 barns [3];     71 1451     
+ therefore, to capture both coherent and incoherent elastic         71 1451     
+ scattering, the incoherent elastic TSL is tabulated in the         71 1451     
+ N in UN library and the coherent elastic cross section data        71 1451     
+ for UN is tabulated in U in UN library.                            71 1451     
+                                                                    71 1451     
+ References                                                         71 1451     
+ ----------                                                         71 1451     
+                                                                    71 1451     
+ 1. A.I. Hawari, "Modern Techniques in Inelastic Thermal Neutron    71 1451     
+    Scattering Analysis," Nuclear Data Sheets 118 (2014) 172.       71 1451     
+ 2. Y. Zhu, A.I. Hawari, "Implementation of a Generalized Coherent  71 1451     
+    Elastic Scattering Formulation for Thermal Neutron Scattering   71 1451     
+    Analysis," Proceedings of ICNC 2015: 35th International         71 1451     
+    Conference on Nuclear Criticality Safety (2015)                 71 1451     
+ 3. V.F. Sears, "Neutron Scattering Lengths and Cross Sections"     71 1451     
+    Neutron News, 3, 3 (1992) 29.                                   71 1451     
+                                                                    71 1451     
+ -----------------------------------------------------------------  71 1451     
+                                1        451         42          0  71 1451     
+                                7          2          6          0  71 1451     
+                                                                    71 1  0     
+                                                                    71 0  0     
+ 1.710000+2 1.388278+1          2          0          0          0  71 7  2
+ 5.000000-1 0.000000+0          0          0          1          8  71 7  2
+          8          2                                              71 7  2
+ 2.960000+2 2.889119+0 4.000000+2 3.641452+0 5.000000+2 4.403329+0  71 7  2
+ 6.000000+2 5.185457+0 7.000000+2 5.979667+0 8.000000+2 6.781621+0  71 7  2
+ 1.000000+3 8.399740+0 1.200000+3 1.002907+1                        71 7  2
+                                                                    71 7  0
+                                                                    71 0  0     
+                                                                     0 0  0     
+                                                                    -1 0  0     

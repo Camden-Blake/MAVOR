@@ -1,0 +1,64 @@
+ $Rev::          $  $Date::            $                             0 0  0     
+ 1.100000+2 9.992800-1         -1          0          0          0  10 1451     
+ 0.000000+0 0.000000+0          0          0          0          6  10 1451     
+ 1.000000+0 0.000000+0          0          0         12          8  10 1451     
+ 0.000000+0 0.000000+0          0          0         45          2  10 1451     
+ H(ice-Ih) BAPL       EVAL-OCT16 Holmes, Zerkle                     10 1451     
+ REF. 3 (2016)        DIST-FEB18                                    10 1451     
+----ENDF/B-VIII.0     MATERIAL 10                                   10 1451     
+----- THERMAL NEUTRON SCATTERING DATA                               10 1451     
+------ ENDF-6                                                       10 1451     
+                                                                    10 1451     
+ Temperatures (K) = 115.00  188.15  208.15  228.15  233.15  248.15  10 1451     
+                    253.15  268.15  273.15                          10 1451     
+                                                                    10 1451     
+ History                                                            10 1451     
+ -------                                                            10 1451     
+ This evaluation was produced at Bettis Atomic Power Laboratory in  10 1451     
+ October 2016 using the LEAPR module of NJOY2012 [1].  The phonon   10 1451     
+ frequency spectra for H and O in solid H2O (ice Ih) were           10 1451     
+ calculated using the MedeA materials simulation software [2] and   10 1451     
+ and optimized as described in Ref. 3.  This evaluation has been    10 1451     
+ validated against measured total cross sections [3,4] and flux     10 1451     
+ decay time eigenvalues for a pulsed-neutron die-away diffusion     10 1451     
+ experiment [3,5].                                                  10 1451     
+                                                                    10 1451     
+ Theory                                                             10 1451     
+ ------                                                             10 1451     
+ The phase of solid H2O encountered under common temperature and    10 1451     
+ pressure conditions is ice Ih, a hexagonal structure with locally  10 1451     
+ ordered but globally disordered molecular orientations.  The VASP  10 1451     
+ ab initio density functional theory code and PHONON lattice        10 1451     
+ dynamics code were used to calculate the phonon spectra for H and  10 1451     
+ O in ice Ih with constraints based on high-accuracy measured       10 1451     
+ lattice constants [3,6].  The same phonon spectra are used at all  10 1451     
+ temperatures because thermal expansion is negligible.  The         10 1451     
+ calculated spectra were then optimized to be consistent with       10 1451     
+ experimentally measured inelastic neutron scattering spectra [7]   10 1451     
+ and total cross sections [4] for physical samples with globally    10 1451     
+ disordered H positions.                                            10 1451     
+                                                                    10 1451     
+ References                                                         10 1451     
+ ----------                                                         10 1451     
+ 1. A. C. Kahler (ed.), LA-UR-12-27079 (December 20, 2012).         10 1451     
+ 2. "MedeA Users Guide, MedeA 2.16," Materials Design Inc. (2014).  10 1451     
+ 3. J. C. Holmes et al., Int. Conf. Nucl. Data (September, 2016).   10 1451     
+ 4. L. Torres et al., Nucl. Instr. Meth. Phys. Res. B, 251 (2006).  10 1451     
+ 5. E. G. Silver, Nucl. Sci. Eng., 34 (1968).                       10 1451     
+ 6. K. Rottger et al., Acta Crystallographica, B50 (1994).          10 1451     
+ 7. J. Li et al., J. Mol. Liq., 100/1 (2002).                       10 1451     
+                                                                    10 1451     
+                                1        451         51          0  10 1451     
+                                7          2          6          0  10 1451     
+                                                                    10 1  0     
+                                                                    10 0  0     
+ 1.100000+2 9.992800-1          2          0          0          0  10 7  2
+ 80.3178400 0.000000+0          0          0          1          9  10 7  2
+          9          2                                              10 7  2
+ 1.150000+2 1.470372+1 1.881500+2 1.912240+1 2.081500+2 2.037892+1  10 7  2
+ 2.281500+2 2.165261+1 2.331500+2 2.197355+1 2.481500+2 2.294205+1  10 7  2
+ 2.531500+2 2.326671+1 2.681500+2 2.424591+1 2.731500+2 2.457398+1  10 7  2
+                                                                    10 7  0
+                                                                    10 0  0     
+                                                                     0 0  0     
+                                                                    -1 0  0     
