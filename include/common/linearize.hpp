@@ -5,10 +5,13 @@
 #include <functional>
 
 enum class ToleranceCondition {
-    Or,       // abs OR rel
-    And,      // abs AND rel
-    AbsOnly,  // abs only
-    RelOnly   // rel only
+    Or,           // abs OR rel
+    And,          // abs AND rel
+    AbsOnly,      // abs only
+    RelOnly,      // rel only
+    Adaptive,     // abs_tol = rel_tol * max(|y_1|, |y_2|)
+    AdaptiveOr,   // (abs > abs_tol) OR (abs > rel_tol * local_scale)
+    AdaptiveAnd   // (abs > abs_tol) AND (abs > rel_tol * local_scale)
 };
 
 /// @brief Linearizes a set of points by recursively adding intermediate points.

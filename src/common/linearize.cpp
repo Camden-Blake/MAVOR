@@ -8,7 +8,8 @@
 
 bool check_condition(ToleranceCondition cond,
                      double abs_diff, double abs_tol,
-                     double rel_diff, double rel_tol)
+                     double rel_diff, double rel_tol,
+                     double y_1, double y_2, double y_point)
 {
     switch (cond) {
         case ToleranceCondition::Or:
@@ -19,6 +20,21 @@ bool check_condition(ToleranceCondition cond,
             return abs_diff > abs_tol;
         case ToleranceCondition::RelOnly:
             return rel_diff > rel_tol;
+        case ToleranceCondition::Adaptive: {
+            double local_scale = std::max({std::abs(y_1), std::abs(y_2), std::abs(y_point)});
+            double scaled_tol = rel_tol * local_scale;
+            return abs_diff > std::max(abs_tol, scaled_tol);
+        }
+        case ToleranceCondition::AdaptiveOr: {
+            double local_scale = std::max({std::abs(y_1), std::abs(y_2), std::abs(y_point)});
+            double scaled_tol = rel_tol * local_scale;
+            return abs_diff > abs_tol || abs_diff > scaled_tol;
+        }
+        case ToleranceCondition::AdaptiveAnd: {
+            double local_scale = std::max({std::abs(y_1), std::abs(y_2), std::abs(y_point)});
+            double scaled_tol = rel_tol * local_scale;
+            return abs_diff > abs_tol && abs_diff > scaled_tol;
+        }
         default:
             return false; // fallback (shouldn't happen)
     }
@@ -50,11 +66,13 @@ void linearize(std::vector<double>& x_points, std::vector<double>& y_points, std
         double interp_y = y_1 + (y_2 - y_1)*(x_point - x_1)/(x_2 - x_1);
 
         double abs_diff = abs(y_point - interp_y);
-        double rel_diff = (y_point != 0) ? abs(abs_diff/y_point) : 0;
+        double y_magnitude = std::max({std::abs(y_1), std::abs(y_2), std::abs(y_point)});
+        double rel_diff = (y_magnitude > 1e-15) ? abs_diff / y_magnitude : 0;
 
 
         // if (abs_diff>absolute_tolerance && rel_diff>relative_tolerance){
-        if (check_condition(condition, abs_diff, absolute_tolerance, rel_diff, relative_tolerance)){
+        if (check_condition(condition, abs_diff, absolute_tolerance, 
+                   rel_diff, relative_tolerance, y_1, y_2, y_point)) {
             x_points.push_back(x_point);
             y_points.push_back(y_point);
             stack.push_back(std::make_pair(left, x_points.size()-1));

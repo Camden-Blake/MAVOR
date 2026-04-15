@@ -136,7 +136,7 @@ class TslFileData {
         /// @param alpha Desired alpha value at temperature
         /// @param beta Desired beta value at temperature
         /// @return TSL value
-        std::pair<double, bool> return_arbitrary_TSL_val(double const& alpha, double const& beta);
+        // std::pair<double, bool> return_arbitrary_TSL_val(double const& alpha, double const& beta);
 
     private:
         std::vector<int> alpha_interpolants;

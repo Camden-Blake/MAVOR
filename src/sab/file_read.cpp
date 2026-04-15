@@ -425,104 +425,104 @@ struct CubicSpline {
 };
 
 
-std::pair<double, bool> TslFileData::return_arbitrary_TSL_val(double const& alpha, double const& beta){
-    // Convert alpha and beta into search values that are in the same domain as the stored values
-    double search_alpha = alpha;
-    double search_beta = beta;
-    if (lat == 1){
-        search_alpha *= temp/ref_temp_k;
-        search_beta *= temp/ref_temp_k;
-    }
-    if (lasym == 0){
-        search_beta = std::abs(search_beta);
-    }
-    // If the desired alpha/beta is not contained within the stored data, use SCT
-    /// NOTE: Getting S values below the alpha grid is handled by extrapolation
-    bool off_data = (
-                    //  search_alpha < alphas.front() ||
-                     search_alpha > alphas.back() || 
-                     search_beta < betas.front() || 
-                     search_beta > betas.back()
-                     );
-    if(off_data){return std::make_pair(return_asym_SCT(alpha, beta), true);}
+// std::pair<double, bool> TslFileData::return_arbitrary_TSL_val(double const& alpha, double const& beta){
+//     // Convert alpha and beta into search values that are in the same domain as the stored values
+//     double search_alpha = alpha;
+//     double search_beta = beta;
+//     if (lat == 1){
+//         search_alpha *= temp/ref_temp_k;
+//         search_beta *= temp/ref_temp_k;
+//     }
+//     if (lasym == 0){
+//         search_beta = std::abs(search_beta);
+//     }
+//     // If the desired alpha/beta is not contained within the stored data, use SCT
+//     /// NOTE: Getting S values below the alpha grid is handled by extrapolation
+//     bool off_data = (
+//                     //  search_alpha < alphas.front() ||
+//                      search_alpha > alphas.back() || 
+//                      search_beta < betas.front() || 
+//                      search_beta > betas.back()
+//                      );
+//     if(off_data){return std::make_pair(return_asym_SCT(alpha, beta), true);}
 
-    else{
-        // Extract the S values that bracket the desired point
-        int alpha_lo_insert = std::lower_bound(alphas.begin()+1, alphas.end(), search_alpha) - alphas.begin();
-        int beta_lo_insert = std::lower_bound(betas.begin()+1, betas.end(), search_beta) - betas.begin();
-        double f11 = tsl_vals[beta_lo_insert-1][alpha_lo_insert-1];
-        double f12 = tsl_vals[beta_lo_insert-1][alpha_lo_insert];
-        double f21 = tsl_vals[beta_lo_insert][alpha_lo_insert-1];
-        double f22 = tsl_vals[beta_lo_insert][alpha_lo_insert];
+//     else{
+//         // Extract the S values that bracket the desired point
+//         int alpha_lo_insert = std::lower_bound(alphas.begin()+1, alphas.end(), search_alpha) - alphas.begin();
+//         int beta_lo_insert = std::lower_bound(betas.begin()+1, betas.end(), search_beta) - betas.begin();
+//         double f11 = tsl_vals[beta_lo_insert-1][alpha_lo_insert-1];
+//         double f12 = tsl_vals[beta_lo_insert-1][alpha_lo_insert];
+//         double f21 = tsl_vals[beta_lo_insert][alpha_lo_insert-1];
+//         double f22 = tsl_vals[beta_lo_insert][alpha_lo_insert];
 
-        // If the any of the bracketing S values fall below the SCT cutoff, use SCT
-        // Ensure to compare the true S value and not ln(S)
-        // Ternary operator looks to see if lln is set, if so take exp, if not use value directly
-        // Cant update the values themselves cause interpolation is only valid on stored values
-        bool below_cutoff = ((lln ? std::exp(f11) : f11) < sct_cutoff ||
-                             (lln ? std::exp(f12) : f12) < sct_cutoff ||
-                             (lln ? std::exp(f21) : f21) < sct_cutoff ||
-                             (lln ? std::exp(f22) : f22) < sct_cutoff);
-        if (below_cutoff){return std::make_pair(return_asym_SCT(alpha, beta), true);}
+//         // If the any of the bracketing S values fall below the SCT cutoff, use SCT
+//         // Ensure to compare the true S value and not ln(S)
+//         // Ternary operator looks to see if lln is set, if so take exp, if not use value directly
+//         // Cant update the values themselves cause interpolation is only valid on stored values
+//         bool below_cutoff = ((lln ? std::exp(f11) : f11) < sct_cutoff ||
+//                              (lln ? std::exp(f12) : f12) < sct_cutoff ||
+//                              (lln ? std::exp(f21) : f21) < sct_cutoff ||
+//                              (lln ? std::exp(f22) : f22) < sct_cutoff);
+//         if (below_cutoff){return std::make_pair(return_asym_SCT(alpha, beta), true);}
 
-        else{
-            double s;
-            double& b_l = betas[beta_lo_insert-1];
-            double& b_u = betas[beta_lo_insert];
-            double& a_l = alphas[alpha_lo_insert-1];
-            double& a_u = alphas[alpha_lo_insert];
+//         else{
+//             double s;
+//             double& b_l = betas[beta_lo_insert-1];
+//             double& b_u = betas[beta_lo_insert];
+//             double& a_l = alphas[alpha_lo_insert-1];
+//             double& a_u = alphas[alpha_lo_insert];
 
-            int beta_range_insert = std::lower_bound(beta_interpolants_boundaries.begin(), 
-                                                     beta_interpolants_boundaries.end(), 
-                                                     beta_lo_insert) - beta_interpolants_boundaries.begin();
-            int beta_interp_scheme = beta_interpolants[beta_range_insert];
+//             int beta_range_insert = std::lower_bound(beta_interpolants_boundaries.begin(), 
+//                                                      beta_interpolants_boundaries.end(), 
+//                                                      beta_lo_insert) - beta_interpolants_boundaries.begin();
+//             int beta_interp_scheme = beta_interpolants[beta_range_insert];
 
-            if (search_alpha < alphas.front()){
-                // Opposite with what is stated in "(2016) Computational Methods used to Process Thermal Neutron Scattering Data for use in Continuous energy Monte Carlo Codes - Trumbull"
-                // Maybe just a mistake in the writing of the paper cause this fixed scattering cosine calculations at low E
-                // Also needed the ternary to change behavior so that energy transfer pdfs for HinH2O aligned
-                // if s values are increasing with alpha, log-log interpolation, otherwise log-linear interpolation
-                int b_l_alpha_interp_scheme = (f11 - f12 < 0 ? 5 : 4);
-                int b_u_alpha_interp_scheme = (f21 - f22 < 0 ? 5 : 4);
-                // int b_l_alpha_interp_scheme = (f11 - f12 > 0 ? 5 : 4);
-                // int b_u_alpha_interp_scheme = (f21 - f22 > 0 ? 5 : 4);
+//             if (search_alpha < alphas.front()){
+//                 // Opposite with what is stated in "(2016) Computational Methods used to Process Thermal Neutron Scattering Data for use in Continuous energy Monte Carlo Codes - Trumbull"
+//                 // Maybe just a mistake in the writing of the paper cause this fixed scattering cosine calculations at low E
+//                 // Also needed the ternary to change behavior so that energy transfer pdfs for HinH2O aligned
+//                 // if s values are increasing with alpha, log-log interpolation, otherwise log-linear interpolation
+//                 int b_l_alpha_interp_scheme = (f11 - f12 < 0 ? 5 : 4);
+//                 int b_u_alpha_interp_scheme = (f21 - f22 < 0 ? 5 : 4);
+//                 // int b_l_alpha_interp_scheme = (f11 - f12 > 0 ? 5 : 4);
+//                 // int b_u_alpha_interp_scheme = (f21 - f22 > 0 ? 5 : 4);
 
-                // interpolate wrt alphas
-                double s_l = ENDF_interp(a_l, a_u, f11, f12, search_alpha, b_l_alpha_interp_scheme);
-                double s_u = ENDF_interp(a_l, a_u, f21, f22, search_alpha, b_u_alpha_interp_scheme);
-                // interpolate wrt beta
-                s = ENDF_interp(b_l, b_u, s_l, s_u, search_beta, beta_interp_scheme);
+//                 // interpolate wrt alphas
+//                 double s_l = ENDF_interp(a_l, a_u, f11, f12, search_alpha, b_l_alpha_interp_scheme);
+//                 double s_u = ENDF_interp(a_l, a_u, f21, f22, search_alpha, b_u_alpha_interp_scheme);
+//                 // interpolate wrt beta
+//                 s = ENDF_interp(b_l, b_u, s_l, s_u, search_beta, beta_interp_scheme);
 
-                // Spline implementation with S(alpha=0)=0
-                // std::array<double, 4> x_array = {0, alphas[0], alphas[1], alphas[2]};
-                // std::array<double, 4> s_l_array = {0, tsl_vals[beta_lo_insert-1][0], tsl_vals[beta_lo_insert-1][1], tsl_vals[beta_lo_insert-1][2]};
-                // std::array<double, 4> s_u_array = {0, tsl_vals[beta_lo_insert][0], tsl_vals[beta_lo_insert][1], tsl_vals[beta_lo_insert][2]};
+//                 // Spline implementation with S(alpha=0)=0
+//                 // std::array<double, 4> x_array = {0, alphas[0], alphas[1], alphas[2]};
+//                 // std::array<double, 4> s_l_array = {0, tsl_vals[beta_lo_insert-1][0], tsl_vals[beta_lo_insert-1][1], tsl_vals[beta_lo_insert-1][2]};
+//                 // std::array<double, 4> s_u_array = {0, tsl_vals[beta_lo_insert][0], tsl_vals[beta_lo_insert][1], tsl_vals[beta_lo_insert][2]};
 
-                // CubicSpline spline_l(x_array, s_l_array);
-                // CubicSpline spline_u(x_array, s_u_array);
+//                 // CubicSpline spline_l(x_array, s_l_array);
+//                 // CubicSpline spline_u(x_array, s_u_array);
 
-                // double s_l = spline_l.evaluate(search_alpha);
-                // double s_u = spline_u.evaluate(search_alpha);
-                // s = ENDF_interp(b_l, b_u, s_l, s_u, search_beta, beta_interp_scheme);
-            }
-            else{
-                // Determine the interpolation schemes
-                int alpha_range_insert = std::lower_bound(alpha_interpolants_boundaries.begin(), 
-                                                          alpha_interpolants_boundaries.end(), 
-                                                          alpha_lo_insert) - alpha_interpolants_boundaries.begin();
-                int alpha_interp_scheme = alpha_interpolants[alpha_range_insert];
+//                 // double s_l = spline_l.evaluate(search_alpha);
+//                 // double s_u = spline_u.evaluate(search_alpha);
+//                 // s = ENDF_interp(b_l, b_u, s_l, s_u, search_beta, beta_interp_scheme);
+//             }
+//             else{
+//                 // Determine the interpolation schemes
+//                 int alpha_range_insert = std::lower_bound(alpha_interpolants_boundaries.begin(), 
+//                                                           alpha_interpolants_boundaries.end(), 
+//                                                           alpha_lo_insert) - alpha_interpolants_boundaries.begin();
+//                 int alpha_interp_scheme = alpha_interpolants[alpha_range_insert];
 
-                s = bi_interp(b_l, b_u, a_l, a_u,
-                              f11, f12, f21, f22,
-                              search_beta, search_alpha,
-                              beta_interp_scheme, alpha_interp_scheme);
-            }
+//                 s = bi_interp(b_l, b_u, a_l, a_u,
+//                               f11, f12, f21, f22,
+//                               search_beta, search_alpha,
+//                               beta_interp_scheme, alpha_interp_scheme);
+//             }
 
-            // Take exp(s) if lln is set
-            if (lln == 1){s = std::exp(s);}
-            // Multiply by exp(-beta/2) if lasym is set
-            if (lasym == 0){s = std::exp(-beta/2.0) * s;}
-            return std::make_pair(s, false);
-        }
-    }
-}
+//             // Take exp(s) if lln is set
+//             if (lln == 1){s = std::exp(s);}
+//             // Multiply by exp(-beta/2) if lasym is set
+//             if (lasym == 0){s = std::exp(-beta/2.0) * s;}
+//             return std::make_pair(s, false);
+//         }
+//     }
+// }

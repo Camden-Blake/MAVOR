@@ -129,11 +129,11 @@ class DistData {
         /// If the "cdf_files" CLI option is set, Mavor will read the files and set the grids to whats contained in the files.
         void set_initial_cdf_grids__();
 
-        /// @brief Calculates an arbitrary TSL value given the TSL data
+        /// @brief Calculates an arbitrary TSL value given the symmetric (positive beta) TSL
         /// @param alpha Desired alpha value
         /// @param beta Desired beta value
         /// @return Desired TSL value
-        std::pair<double, bool> return_arbitrary_TSL_val(double const& alpha, double const& beta);
+        std::pair<double, bool> return_arbitrary_TSL_val(double alpha, double beta);
 
         /// @brief Returns a vector of stored alpha values that are within the alpha extrema and adds the extrema if not already present
         /// @param inc_energy Desired incident energy in eV

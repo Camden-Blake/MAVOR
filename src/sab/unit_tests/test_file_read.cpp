@@ -108,16 +108,16 @@ TEST_F(TslFileDataTest, ReturnTSLVal){
     }
 }
 
-TEST_F(TslFileDataTest, ReturnArbTSLVal){
-    TslFileData tsl_data(hdf5_test_file);
+// TEST_F(TslFileDataTest, ReturnArbTSLVal){
+//     TslFileData tsl_data(hdf5_test_file);
 
-    std::vector<std::vector<double>> true_tsl_vals = tsl_data.return_full_asym_tsl_vals();
-    std::vector<double> alphas = tsl_data.return_scaled_alphas();
-    std::vector<double> betas = tsl_data.return_full_scaled_betas();
+//     std::vector<std::vector<double>> true_tsl_vals = tsl_data.return_full_asym_tsl_vals();
+//     std::vector<double> alphas = tsl_data.return_scaled_alphas();
+//     std::vector<double> betas = tsl_data.return_full_scaled_betas();
 
-    for (int i = 0; i < betas.size(); i++){
-        for (int j = 0; j < alphas.size(); j++){
-            EXPECT_NEAR(true_tsl_vals[i][j], tsl_data.return_arbitrary_TSL_val(alphas[j], betas[i]).first, abs_tol);
-        }
-    }
-}
+//     for (int i = 0; i < betas.size(); i++){
+//         for (int j = 0; j < alphas.size(); j++){
+//             EXPECT_NEAR(true_tsl_vals[i][j], tsl_data.return_arbitrary_TSL_val(alphas[j], betas[i]).first, abs_tol);
+//         }
+//     }
+// }

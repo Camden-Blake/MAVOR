@@ -61,6 +61,7 @@ def parse_cli_args() -> None:
 
 def run_mavor(args_string = ""):
     os.system(f"{mavor_exe} " + args_string)
+    # print(f"{mavor_exe} " + args_string)
 
 def run_all_mavor(args_string_list):
     for args_string in args_string_list:
@@ -158,12 +159,12 @@ def gen_otf_file():
     print_time(t0)
 
 def full_run():
-    gen_njoy_results()
+    # gen_njoy_results()
     gen_non_unioned_sab_results()
-    gen_unioned_energy_grid()
-    gen_unioned_sab_results()
-    gen_coefficients()
-    gen_otf_file()
+    # gen_unioned_energy_grid()
+    # gen_unioned_sab_results()
+    # gen_coefficients()
+    # gen_otf_file()
 
 if __name__ == "__main__":
     start_time = time.perf_counter()
