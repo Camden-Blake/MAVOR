@@ -356,7 +356,7 @@ std::pair<double, double> TslFileData::calculate_alpha_extrema(double const& inc
 double TslFileData::return_sym_SCT(double const& alpha, double const& beta){
     double numer_numer = std::pow((alpha-std::abs(beta)), 2);
     double numer_denom = 4.0*alpha*temp_ratio;
-    double numer = std::exp(-(numer_numer/numer_denom) + (std::abs(beta)/2.0));
+    double numer = std::exp(-(numer_numer/numer_denom) - (std::abs(beta)/2.0));
     double denom = std::sqrt(4.0*PI*alpha*temp_ratio);
     return numer/denom;
 }
@@ -523,6 +523,7 @@ std::pair<double, bool> TslFileData::return_arbitrary_TSL_val(double const& alph
             // Multiply by exp(-beta/2) if lasym is set
             if (lasym == 0){s = std::exp(-beta/2.0) * s;}
             return std::make_pair(s, false);
+            // return std::make_pair(s + return_asym_SCT(alpha, beta), false);
         }
     }
 }
