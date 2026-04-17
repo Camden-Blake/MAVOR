@@ -122,6 +122,7 @@ class TslFileData {
         /// @param beta Beta value to calculate SCT
         /// @return Asymmetric SCT approximation at alpha and beta
         double return_asym_SCT(double const& alpha, double const& beta);
+        double log_return_asym_SCT(double const& alpha, double const& beta);
         
         /// @brief Calculated the definite integral of the asymmetric short collision time approximation at a given beta between two alpha points
         /// @param alpha_l Lower alpha bound

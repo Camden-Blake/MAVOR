@@ -365,6 +365,14 @@ double TslFileData::return_asym_SCT(double const& alpha, double const& beta){
     return std::exp(-beta/2.0) * return_sym_SCT(alpha, beta);
 }
 
+double TslFileData::log_return_asym_SCT(double const& alpha, double const& beta){
+    double numer_numer = pow(alpha - abs(beta), 2.0);
+    double numer_denom = 4.0L*alpha*temp_ratio;
+    double log_numer = -(numer_numer/numer_denom) - (abs(beta)/2.0);
+    double log_denom = 0.5*log(4.0*PI*alpha*temp_ratio);
+    return -beta/2.0 + log_numer - log_denom;
+}
+
 double TslFileData::return_asym_SCT_alpha_integral(double const& alpha_l, double const& alpha_u, double const& beta){
     double l = asym_SCT_alpha_integral_bounds__(alpha_l, beta);
     double u = asym_SCT_alpha_integral_bounds__(alpha_u, beta);
