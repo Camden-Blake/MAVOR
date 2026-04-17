@@ -292,6 +292,22 @@ void DistData::get_alpha_sampling_dists__(){
     alpha_vals.reserve(beta_grid.size());
     for (auto beta: calculation_half_betas){
         auto [vals, pdf] = return_linearized_alpha_pdf(beta);
+        /// NOTE: This is for materials like YinYH2 when the beta gets large enough even the SCT truncates to zero.
+        bool near_zero_pdf = std::all_of(pdf.begin(), pdf.end(), [](double val) { return val < 1e-200; });
+        if (near_zero_pdf) {
+            std::vector<double> log_pdf(vals.size());
+            for (int i = 0; i < vals.size(); i++) {
+                log_pdf[i] = tsl_data.log_return_asym_SCT(vals[i], beta);
+            }
+            double max_log = *std::max_element(log_pdf.begin(), log_pdf.end());
+            for (int i = 0; i < vals.size(); i++) {
+                pdf[i] = std::exp(log_pdf[i] - max_log);
+            }
+            if (std::all_of(pdf.begin(), pdf.end(), [](double val) { return val == 0.0; })) {
+                throw std::runtime_error("Numerical failure: PDF remains zero after log-scaling.");
+            }
+        }
+        /// NOTE: End weird stuff for YinYH2
         calculation_alpha_vals.push_back(vals);
         calculation_alpha_cdfs.push_back(pdf_to_cdf(vals, pdf));
         alpha_vals.push_back(fit_cdf(vals, calculation_alpha_cdfs.back(), initialization_alpha_cdf_grid));
