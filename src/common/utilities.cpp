@@ -59,9 +59,8 @@ std::vector<double> pdf_to_cdf(std::vector<double> const & x, std::vector<double
     if (!std::isfinite(cdf.back())){
         throw std::runtime_error("Non-finite number found when converting PDF to CDF.");
     }
-    if (cdf.back() < std::numeric_limits<double>::min()) {
-        std::cerr << "WARNING: CDF is below numeric_limits<double>::min(). Altering PDF to be a constant value.\n";
-        cdf = linspace(0, 1, x.size());
+    if (cdf.back() == 0) {
+        throw std::runtime_error("CDF is zero.");
     }
     else{ 
         double factor = 1/cdf.back();
